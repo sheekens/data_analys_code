@@ -1,0 +1,31 @@
+git push  залить локальное сохрание на сайт.
+git commit -m 'stari cod' создать локальное сохранение с текстовым сообщением.
+git status  показывает изменненые или добавленные файлы
+ git add <путь до файла> добавить файл в commit это сохранение.
+ cd  поменять директорию  в терминале
+ git clone  скопировать репозиторий  по ссылке
+
+git status 
+git add -A    - добавить все файлы в папке
+git commit -m 'nazvanie'    - добавить комментарий к добавленным файлам
+git push     - залить все откомментированные файлы на гит
+
+C:\Users\User\venvs\cv\Scripts\Activate.ps1 - запуск виртуального окружения
+
+запушить всё из папки на гит:
+	echo "# data_analys_code" >> README.md
+	git init
+	git add README.md
+	git commit -m "first commit"
+	git branch -M main
+	git remote add origin git@github.com:sheekens/data_analys_code.git
+	git push -u origin main
+	
+img parametres:
+img.shape = height, width, channels
+channels = BGR!!!
+
+открыть изображение:
+cv2.imread(path)
+
+сохранить изображение:
