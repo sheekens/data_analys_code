@@ -6,10 +6,10 @@ import numpy as np
 
 img_path = os.path.abspath('jeezus.jpg')
 # img_path = os.path.abspath('uz.jpg')
-print(img_path)
+# print(img_path)
 
 img = cv2.imread(img_path)
-print(img.shape)
+# print(img.shape)
 img_height, img_width, img_channels = img.shape
 # print(img_height, img_width)
 img_top = img[:100,:,:]
@@ -34,37 +34,37 @@ cv2.imwrite(out_path, img_center)
 # cv2.imshow('jeezus', pupok)
 # cv2.waitKey(-1)
 
-w_divider = 11
-h_divider = w_divider
-x_step = int(img_width / w_divider)
-y_step = int(img_height / h_divider)
-current_x = 0
-current_y = 0
-
-for i in range(w_divider):
-    previous_y = current_y
-    current_y += y_step
+def image_into_chess (img_path, w_divider, h_divider):
+    img = cv2.imread(img_path)
+    x_step = int(img_width / w_divider)
+    y_step = int(img_height / h_divider)
     current_x = 0
-    for j in range(h_divider):
-        previous_x = current_x
-        current_x += x_step
-        preprevious_x = previous_x - x_step
-        if i%2 == 0 and j%2 == 0:
-            print('2 for x:', previous_x, current_x, 'y:', previous_y, current_y)
-            crop = img[
-                previous_y:current_y,
-                previous_x:current_x,
-                :
-            ]
-            crop *= 0
-        elif i%2 != 0 and j%2 == 0:
-            print('3 for x:', previous_x, current_x, 'y:', previous_y, current_y)
-            crop = img[
-                previous_y:current_y,
-                preprevious_x:previous_x,
-                :
-            ]
-            crop *= 0
+    current_y = 0
 
-cv2.imshow('jeezus', img)
+    for i in range(h_divider):
+        previous_y = current_y
+        current_y += y_step
+        current_x = 0
+        for j in range(w_divider):
+            previous_x = current_x
+            current_x += x_step
+            preprevious_x = previous_x - x_step
+            if i%2 == 0 and j%2 != 0:
+                crop = img[
+                    previous_y:current_y,
+                    previous_x:current_x,
+                    :
+                ]
+                crop *= 0
+            elif i%2 != 0 and j%2 != 0:
+                crop = img[
+                    previous_y:current_y,
+                    preprevious_x:previous_x,
+                    :
+                ]
+                crop *= 0
+    return img
+
+chess_jeezus = image_into_chess('jeezus.jpg', 7, 22)
+cv2.imshow('jeezus', chess_jeezus)
 cv2.waitKey(-1)
