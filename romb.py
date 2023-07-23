@@ -29,9 +29,18 @@ def draw_romb_on_img (img_path, line_color, line_thickness):
                 img2draw = cv2.line(img2draw, pt1=(previous_x, current_y), pt2=(current_x, previous_y), color=line_color, thickness=line_thickness)
     return img2draw
 
-green = (0, 200, 0)
-red = (0, 0, 200)
-blue = (200, 0, 0)
-chess_jeezus = draw_romb_on_img('jeezus.jpg', blue, 6)
+colors_dict = {
+    'green':(0, 200, 0),
+    'red':(0, 0, 200),
+    'blue':(200, 0, 0),
+    'black':(0, 0, 0),
+    'purple':(255, 0, 139),
+    'yellow':(72, 207, 255),
+    'light_blue':(255, 191, 0),
+    'pink':(203, 192, 255)
+    }
+
+chess_jeezus = draw_romb_on_img('jeezus.jpg', colors_dict['pink'], 6)
+# print(colors_dict['green'])
 cv2.imshow('jeezus', chess_jeezus)
 cv2.waitKey(-1)
